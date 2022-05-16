@@ -20,11 +20,11 @@ u = Function(V)
 solve(a == L, u, bc)
 # Plot solution and mesh
 plot(u)
+plt.show()
 plot(mesh)
+plt.show()
 # Dump solution to file in VTK format
 file = File("poisson.pvd")
 file << u
 
-# Hold plot
-plot(u)
-plt.show()
+
