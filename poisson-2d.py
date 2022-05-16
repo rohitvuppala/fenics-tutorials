@@ -20,7 +20,18 @@ L = f*v*dx
 
 # Compute solution
 u = Function(V)
-solve(a == L, u, bc)
+
+#Simple solve with direct method (LU)
+#solve(a == L, u, bc)
+
+#Solving with krylov methods and customisation
+solve(a == L, u, bc,
+      solver_parameters=dict(linear_solver="cg",preconditioner= "ilu"))
+
+prm = parameters["krylov_solver"] # short form
+prm["absolute_tolerance"] = 1E-10
+prm["relative_tolerance"] = 1E-6
+prm["maximum_iterations"] = 1000
 
 # Plot solution and mesh
 plot(u)
